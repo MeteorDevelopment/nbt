@@ -1,4 +1,4 @@
-![JitPack](https://img.shields.io/jitpack/v/github/MeteorDevelopment/nbt)
+[![](https://jitpack.io/v/MeteorDevelopment/nbt.svg)](https://jitpack.io/#MeteorDevelopment/nbt)
 
 # NBT
 Simple and fast NBT library. Currently does not support compressed formats.
