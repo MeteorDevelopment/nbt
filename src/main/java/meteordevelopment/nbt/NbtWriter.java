@@ -3,20 +3,35 @@ package meteordevelopment.nbt;
 import meteordevelopment.nbt.tags.*;
 
 import java.io.*;
+import java.util.zip.GZIPOutputStream;
 
 public class NbtWriter implements Closeable, AutoCloseable {
     private final OutputStream stream;
     private final DataOutput out;
 
-    public NbtWriter(String name, OutputStream stream) {
+    public NbtWriter(String name, OutputStream stream, boolean compressed) {
+        if (compressed) {
+            try {
+                stream = new GZIPOutputStream(stream);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         this.stream = stream;
         this.out = new DataOutputStream(stream);
 
         writeCompoundStart(name == null ? "" : name);
     }
+    public NbtWriter(String name, OutputStream stream) {
+        this(name, stream, false);
+    }
 
+    public NbtWriter(String name, File file, boolean compressed) throws FileNotFoundException {
+        this(name, new FileOutputStream(file), compressed);
+    }
     public NbtWriter(String name, File file) throws FileNotFoundException {
-        this(name, new FileOutputStream(file));
+        this(name, file, false);
     }
 
     public void writeCompoundStart(String name) {

@@ -5,10 +5,12 @@ import meteordevelopment.nbt.tags.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 public class NbtReader {
-    public static NamedTag read(InputStream stream) throws NbtFormatException {
+    public static NamedTag read(InputStream stream, boolean compressed) throws NbtFormatException {
         try {
+            if (compressed) stream = new GZIPInputStream(stream);
             DataInput in = new DataInputStream(stream);
 
             if (in.readByte() != TagId.Compound.ordinal()) throw new NbtFormatException("File doesn't start with compound tag.");
