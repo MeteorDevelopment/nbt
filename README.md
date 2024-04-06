@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation "meteordevelopment:NBT:0.1.1"
+    implementation "meteordevelopment:NBT:0.1.2"
 }
 ```
 

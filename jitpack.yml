@@ -1,3 +1,0 @@
-before_install:
-  - bash ensure-jitpack-java-16.sh install
-  - if ! bash ensure-jitpack-java-16.sh use; then source ~/.sdkman/bin/sdkman-init.sh; fi
