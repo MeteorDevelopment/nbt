@@ -63,7 +63,7 @@ public class NbtReader {
             }
             case LongArray -> {
                 long[] longs = new long[in.readInt()];
-                for (int i = 0; i < longs.length; i++) longs[i] = in.readInt();
+                for (int i = 0; i < longs.length; i++) longs[i] = in.readLong();
                 yield new LongArrayTag(longs);
             }
             case Compound -> readCompound(in);
